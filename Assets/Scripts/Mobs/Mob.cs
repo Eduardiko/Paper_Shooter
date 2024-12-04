@@ -13,7 +13,7 @@ public class Mob : MonoBehaviour
     //Mob Specs
 
     [SerializeField] private GameObject projectilePrefab;
-    [SerializeField] private int speed = 10;
+    [SerializeField] private float speed = 10f;
     [SerializeField] private float timeToStartMoving = 2f;
 
 
@@ -36,7 +36,10 @@ public class Mob : MonoBehaviour
 
     protected void Move(Vector2 direction)
     {
-        transform.Translate(direction * speed * Time.deltaTime);  
+        print(direction);
+        transform.Translate(direction * speed * Time.deltaTime);
+        Debug.DrawRay(transform.position, transform.right * 2, Color.red, 2f); // Draws the direction of transform.right
+
     }
 
     protected void Shoot()
@@ -44,7 +47,7 @@ public class Mob : MonoBehaviour
         Projectile projectile = projectilePool.Get();
         projectile.MyPool = projectilePool;
         projectile.FatherObject = gameObject;
-        projectile.transform.eulerAngles = transform.eulerAngles / 2;
+        projectile.transform.eulerAngles = transform.eulerAngles;
 
         if (!spawnedProjectiles.Contains(projectile))
             spawnedProjectiles.Add(projectile);
