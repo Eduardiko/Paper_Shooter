@@ -14,25 +14,24 @@ public class Mob : MonoBehaviour
 
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private int speed = 10;
-    [SerializeField] private float timeBetweenBullets = 2f;
-    
+    [SerializeField] private float timeToStartMoving = 2f;
 
-    protected float timeToShoot = 0;
+
 
     [HideInInspector] public ObjectPool<Projectile> projectilePool;
     protected Vector3 spawnPosition;
 
+    private List<Projectile> spawnedProjectiles;
+
     private void Awake()
     {
         projectilePool = new ObjectPool<Projectile>(InstantiateProjectile, GetProjectile, ReleaseProjectile, DestroyProjectile);
+        spawnedProjectiles = new List<Projectile>();
     }
 
     void Update()
     {
         spawnPosition = transform.position;
-
-        if(timeToShoot > 0)
-            timeToShoot -= Time.deltaTime;
     }
 
     protected void Move(Vector2 direction)
@@ -42,23 +41,33 @@ public class Mob : MonoBehaviour
 
     protected void Shoot()
     {
-        if (timeToShoot <= 0)
-        {
-            timeToShoot = timeBetweenBullets;
-            projectilePool.Get();
-        }
+        Projectile projectile = projectilePool.Get();
+        projectile.MyPool = projectilePool;
+        projectile.FatherObject = gameObject;
+        projectile.transform.eulerAngles = transform.eulerAngles / 2;
+
+        if (!spawnedProjectiles.Contains(projectile))
+            spawnedProjectiles.Add(projectile);
     }
     public void Die()
     {
         Destroy(gameObject);
     }
 
+    private void OnDestroy()
+    {
+        foreach(Projectile projectile in spawnedProjectiles)
+        {
+            if(!projectile.gameObject.activeSelf)
+                Destroy(projectile.gameObject);
+        }
+    }
+
+
     #region PoolMethods
     private Projectile InstantiateProjectile()
     {
-        Projectile projectile = GameObject.Instantiate(projectilePrefab, spawnPosition, transform.rotation).GetComponent<Projectile>();
-        projectile.MyPool = projectilePool;
-        projectile.FatherObject = gameObject;
+        Projectile projectile = GameObject.Instantiate(projectilePrefab, spawnPosition, Quaternion.identity).GetComponent<Projectile>();
         return projectile;
     }
     private void GetProjectile(Projectile projectile)
@@ -76,6 +85,5 @@ public class Mob : MonoBehaviour
     {
         Destroy(projectile);
     }
-
     #endregion
 }

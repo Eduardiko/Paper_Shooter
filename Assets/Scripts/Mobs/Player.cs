@@ -5,9 +5,11 @@ using UnityEngine.InputSystem;
 
 public class Player : Mob
 {
-    private PlayerInput playerInput;
+    [SerializeField] private float timeBetweenBullets = 2f;
+    private float timeToShoot = 0;
 
     // Continous Input Actions
+    private PlayerInput playerInput;
     private InputAction moveAction;
     private InputAction shootAction;
 
@@ -23,6 +25,9 @@ public class Player : Mob
 
     void Update()
     {
+        if (timeToShoot > 0)
+            timeToShoot -= Time.deltaTime;
+
         ReadContinuousInputs();
 
         spawnPosition = transform.position;
@@ -35,7 +40,10 @@ public class Player : Mob
     {
         Move(moveAction.ReadValue<Vector2>());
 
-        if (shootAction.ReadValue<float>() == 1)
+        if (shootAction.ReadValue<float>() == 1 && timeToShoot <= 0)
+        {
+            timeToShoot = timeBetweenBullets;
             Shoot();
+        }
     }
 }
