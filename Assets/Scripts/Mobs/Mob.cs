@@ -58,7 +58,7 @@ public class Mob : MonoBehaviour
     {
         foreach(Projectile projectile in spawnedProjectiles)
         {
-            if(!projectile.gameObject.activeSelf)
+            if(projectile != null && !projectile.gameObject.activeSelf)
                 Destroy(projectile.gameObject);
         }
     }
