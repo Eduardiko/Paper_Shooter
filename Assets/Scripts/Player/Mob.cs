@@ -19,12 +19,12 @@ public class Mob : MonoBehaviour
 
     protected float timeToShoot = 0;
 
-    private ObjectPool<Projectile> projectilePool;
+    [HideInInspector] public ObjectPool<Projectile> projectilePool;
     protected Vector3 spawnPosition;
 
     private void Awake()
     {
-        projectilePool = new ObjectPool<Projectile> (InstantiateProjectile, GetProjectile, ReleaseProjectile, DestroyProjectile);
+        projectilePool = new ObjectPool<Projectile>(InstantiateProjectile, GetProjectile, ReleaseProjectile, DestroyProjectile);
     }
 
     void Update()
@@ -48,14 +48,17 @@ public class Mob : MonoBehaviour
             projectilePool.Get();
         }
     }
-
-
+    public void Die()
+    {
+        Destroy(gameObject);
+    }
 
     #region PoolMethods
     private Projectile InstantiateProjectile()
     {
         Projectile projectile = GameObject.Instantiate(projectilePrefab, spawnPosition, transform.rotation).GetComponent<Projectile>();
         projectile.MyPool = projectilePool;
+        projectile.FatherObject = gameObject;
         return projectile;
     }
     private void GetProjectile(Projectile projectile)
