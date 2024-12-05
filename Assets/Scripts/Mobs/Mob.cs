@@ -11,7 +11,7 @@ using UnityEngine.Pool;
 public class Mob : MonoBehaviour
 {
     //Mob Specs
-
+    [SerializeField] private int health = 5;
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private float speed = 10f;
     [SerializeField] private float timeToStartMoving = 2f;
@@ -36,10 +36,7 @@ public class Mob : MonoBehaviour
 
     protected void Move(Vector2 direction)
     {
-        print(direction);
         transform.Translate(direction * speed * Time.deltaTime);
-        Debug.DrawRay(transform.position, transform.right * 2, Color.red, 2f); // Draws the direction of transform.right
-
     }
 
     protected void Shoot()
@@ -52,6 +49,15 @@ public class Mob : MonoBehaviour
         if (!spawnedProjectiles.Contains(projectile))
             spawnedProjectiles.Add(projectile);
     }
+
+    public void ApplyDamage()
+    {
+        health--;
+
+        if(health <= 0)
+            Die();
+    }
+
     public void Die()
     {
         Destroy(gameObject);

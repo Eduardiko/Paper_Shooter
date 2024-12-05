@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5982495989174818813}
   - component: {fileID: 7218211392042430619}
-  - component: {fileID: 1439775118083780458}
   - component: {fileID: 5596745123311070917}
+  - component: {fileID: 1439775118083780458}
   - component: {fileID: 6046005463692327310}
   - component: {fileID: -1679602064583411603}
   m_Layer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 334026821
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e0c0a79dba55f38488f550ae16ced91e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -88,6 +88,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5596745123311070917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6835714887491015870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b12d0fab959c1e43b75550cca073a0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
+  projectilePrefab: {fileID: 3443693805815439171, guid: 3f2c238c466a14044be8ccfdef3d6e4b, type: 3}
+  speed: 5
+  timeToStartMoving: 2
+  timeBetweenBullets: 0.3
 --- !u!114 &1439775118083780458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,21 +171,6 @@ MonoBehaviour:
   m_DefaultActionMap: Game
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &5596745123311070917
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6835714887491015870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b12d0fab959c1e43b75550cca073a0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 3443693805815439171, guid: 3f2c238c466a14044be8ccfdef3d6e4b, type: 3}
-  speed: 10
-  timeBetweenBullets: 1
 --- !u!61 &6046005463692327310
 BoxCollider2D:
   m_ObjectHideFlags: 0

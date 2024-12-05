@@ -43,7 +43,7 @@ public class Projectile : MonoBehaviour
             Mob mob = collision.gameObject.GetComponent<Mob>();
 
             if(mob != null)
-                mob.Die();
+                mob.ApplyDamage();
         }
     }
 }
