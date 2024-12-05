@@ -36,9 +36,12 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(collision.gameObject == null || fatherObject == null || collision.gameObject.tag == "MobKiller" || this.gameObject == null)
+            return;
+
         if (collision.gameObject.tag != "Projectile" && fatherObject.tag != collision.gameObject.tag)
         {
-            myPool.Release(this);
+                myPool.Release(this);
 
             Mob mob = collision.gameObject.GetComponent<Mob>();
 

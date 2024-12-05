@@ -99,9 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44477320d865ad94ebb37273de724ea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 5
+  health: 3
   projectilePrefab: {fileID: 0}
-  speed: 3
+  speed: 2
   timeToStartMoving: 2
 --- !u!61 &8804146234127634647
 BoxCollider2D:

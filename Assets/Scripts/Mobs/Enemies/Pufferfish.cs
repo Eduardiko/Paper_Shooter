@@ -10,6 +10,9 @@ public class Pufferfish : Mob
 
     void Update()
     {
+        if (!canAct)
+            return;
+
         spawnPosition = transform.position;
 
         if (timeToShoot > 0)

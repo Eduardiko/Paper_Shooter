@@ -8,6 +8,7 @@ public class Swordfish : Mob
 
     void Update()
     {
-        Move(Vector3.right);
+        if(canAct)
+            Move(Vector3.right);
     }
 }

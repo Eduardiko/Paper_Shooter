@@ -16,7 +16,7 @@ public class Mob : MonoBehaviour
     [SerializeField] private float speed = 10f;
     [SerializeField] private float timeToStartMoving = 2f;
 
-
+    [HideInInspector] public bool canAct = false;
 
     [HideInInspector] public ObjectPool<Projectile> projectilePool;
     protected Vector3 spawnPosition;
@@ -36,7 +36,12 @@ public class Mob : MonoBehaviour
 
     protected void Move(Vector2 direction)
     {
-        transform.Translate(direction * speed * Time.deltaTime);
+        float verticalSpeedMultiplier = 1.5f;
+
+        if(direction.y != 0)
+            transform.Translate(direction * speed * verticalSpeedMultiplier * Time.deltaTime);
+        else
+            transform.Translate(direction * speed * Time.deltaTime);
     }
 
     protected void Shoot()
@@ -72,6 +77,11 @@ public class Mob : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "MobKiller")
+            Die();
+    }
 
     #region PoolMethods
     private Projectile InstantiateProjectile()

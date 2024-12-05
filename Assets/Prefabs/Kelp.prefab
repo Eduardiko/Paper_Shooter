@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 5
   projectilePrefab: {fileID: 0}
-  speed: -3
+  speed: 3
   timeToStartMoving: 2
 --- !u!61 &8804146234127634647
 BoxCollider2D:
