@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pufferfish (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3460402029092509603, guid: c4bf03d26e0393d42a061f7557246e67, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5022837412149438164, guid: c4bf03d26e0393d42a061f7557246e67, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.02
@@ -203,13 +207,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 242956127}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13, y: -2.25, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalPosition: {x: 13, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 675665499}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!1 &314255402
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,13 +432,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 605309366}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13, y: 4.5, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalPosition: {x: 13, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 675665499}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!1001 &606597935
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -501,6 +505,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 675665499}
+  - component: {fileID: 675665500}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -528,6 +533,22 @@ Transform:
   - {fileID: 1458174174}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &675665500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 675665498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e01c9161e05166468416ebeedef90c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swordFishPrefab: {fileID: 3460402029092509603, guid: a5f1544f0f600b0409ece990d2ea4ac5, type: 3}
+  pufferFishPrefab: {fileID: 3460402029092509603, guid: c4bf03d26e0393d42a061f7557246e67, type: 3}
+  kelpPrefab: {fileID: 3460402029092509603, guid: 2c9114450f7259d42be3181428821675, type: 3}
+  crabPrefab: {fileID: 0}
 --- !u!1001 &797930227
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -539,6 +560,10 @@ PrefabInstance:
     - target: {fileID: 3460402029092509603, guid: c4bf03d26e0393d42a061f7557246e67, type: 3}
       propertyPath: m_Name
       value: Pufferfish (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3460402029092509603, guid: c4bf03d26e0393d42a061f7557246e67, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5022837412149438164, guid: c4bf03d26e0393d42a061f7557246e67, type: 3}
       propertyPath: m_LocalPosition.x
@@ -609,13 +634,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 802997974}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13, y: 2.25, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalPosition: {x: 13, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 675665499}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!1 &1199646200
 GameObject:
   m_ObjectHideFlags: 0
@@ -724,13 +749,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1352995383}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 13, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 675665499}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!1 &1458174173
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,13 +780,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1458174173}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13, y: -4.5, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalPosition: {x: 13, y: -4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 675665499}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!1001 &2016677840
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -774,13 +799,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pufferfish (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3460402029092509603, guid: c4bf03d26e0393d42a061f7557246e67, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5022837412149438164, guid: c4bf03d26e0393d42a061f7557246e67, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.02
       objectReference: {fileID: 0}
     - target: {fileID: 5022837412149438164, guid: c4bf03d26e0393d42a061f7557246e67, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.25
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5022837412149438164, guid: c4bf03d26e0393d42a061f7557246e67, type: 3}
       propertyPath: m_LocalPosition.z
@@ -831,13 +860,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pufferfish (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3460402029092509603, guid: c4bf03d26e0393d42a061f7557246e67, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5022837412149438164, guid: c4bf03d26e0393d42a061f7557246e67, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.02
+      value: 11.04
       objectReference: {fileID: 0}
     - target: {fileID: 5022837412149438164, guid: c4bf03d26e0393d42a061f7557246e67, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5022837412149438164, guid: c4bf03d26e0393d42a061f7557246e67, type: 3}
       propertyPath: m_LocalPosition.z
@@ -945,13 +978,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: SwordFish
       objectReference: {fileID: 0}
+    - target: {fileID: 3460402029092509603, guid: a5f1544f0f600b0409ece990d2ea4ac5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5022837412149438164, guid: a5f1544f0f600b0409ece990d2ea4ac5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.78
+      value: 13.76
       objectReference: {fileID: 0}
     - target: {fileID: 5022837412149438164, guid: a5f1544f0f600b0409ece990d2ea4ac5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.9
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 5022837412149438164, guid: a5f1544f0f600b0409ece990d2ea4ac5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1001,6 +1038,10 @@ PrefabInstance:
     - target: {fileID: 3460402029092509603, guid: c4bf03d26e0393d42a061f7557246e67, type: 3}
       propertyPath: m_Name
       value: Pufferfish
+      objectReference: {fileID: 0}
+    - target: {fileID: 3460402029092509603, guid: c4bf03d26e0393d42a061f7557246e67, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5022837412149438164, guid: c4bf03d26e0393d42a061f7557246e67, type: 3}
       propertyPath: m_LocalPosition.x
