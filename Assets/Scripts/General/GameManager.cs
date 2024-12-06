@@ -5,16 +5,25 @@ using UnityEngine.Pool;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] GameObject playerPrefab;
+    [SerializeField] private Player playerPrefab;
+    [SerializeField] private GameObject healthUIPrefab;
 
-    private ObjectPool<Projectile> playerPool;
+    [SerializeField] private GameObject endLevelMenu;
+    [SerializeField] private Transform healthUIGroup;
 
-
-    private void Awake()
+    private void Update()
     {
-        //GameObject player = Instantiate(playerPrefab);
-       // playerPool = new ObjectPool<Projectile>(InstantiateProjectile, GetProjectile, ReleaseProjectile, DestroyProjectile);
-        //player.GetComponent<Player>().projectilePool = playerPool;
+        if (playerPrefab == null)
+            endLevelMenu.SetActive(true);
 
+        foreach(RectTransform child in healthUIGroup)
+        {
+            Destroy(child.gameObject);
+        }
+
+        for(int i = 0; i < playerPrefab.health; i++)
+        {
+            GameObject.Instantiate(healthUIPrefab, healthUIGroup);
+        }
     }
 }

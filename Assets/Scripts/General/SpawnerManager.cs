@@ -18,8 +18,6 @@ public class SpawnerManager : MonoBehaviour
 
     private List<GameObject> currentSpawnedEntities;
 
-    private bool canSpawnNextWave;
-
     private List<int[]> patternList;
 
     private float distanceBetweenColumns = 3f;

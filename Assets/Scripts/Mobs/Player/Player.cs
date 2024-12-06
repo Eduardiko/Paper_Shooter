@@ -13,6 +13,7 @@ public class Player : Mob
     private InputAction moveAction;
     private InputAction shootAction;
 
+    private Vector3 initPosition;
 
     void Start()
     {
@@ -20,8 +21,9 @@ public class Player : Mob
 
         moveAction = playerInput.actions.FindAction("Move");
         shootAction = playerInput.actions.FindAction("Shoot");
-    }
 
+        initPosition = transform.position;
+    }
 
     void Update()
     {
@@ -47,9 +49,44 @@ public class Player : Mob
         }
     }
 
+    public override void ApplyDamage()
+    {
+        health--;
+        if (health <= 0)
+            Die();
+
+        StartCoroutine(DisableColliderAndBlink(2f, 0.1f));
+    }
+
+    public IEnumerator DisableColliderAndBlink(float duration, float blinkInterval)
+    {
+        if (mobCollider != null && mobRenderer != null)
+        {
+            transform.position = initPosition;
+
+            mobCollider.enabled = false;
+
+            float elapsedTime = 0f;
+
+            while (elapsedTime < duration)
+            {
+                mobRenderer.enabled = !mobRenderer.enabled;
+
+                yield return new WaitForSeconds(blinkInterval);
+
+                elapsedTime += blinkInterval;
+            }
+
+            mobRenderer.enabled = true;
+            mobCollider.enabled = true;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "MobKiller")
-            Die();
+            ApplyDamage();
     }
+
+
 }

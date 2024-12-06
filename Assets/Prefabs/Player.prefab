@@ -100,10 +100,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b12d0fab959c1e43b75550cca073a0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
-  projectilePrefab: {fileID: 3443693805815439171, guid: 3f2c238c466a14044be8ccfdef3d6e4b, type: 3}
+  health: 3
   speed: 5
-  timeToStartMoving: 2
+  projectilePrefab: {fileID: 3443693805815439171, guid: 3f2c238c466a14044be8ccfdef3d6e4b, type: 3}
+  canAct: 0
   timeBetweenBullets: 0.3
 --- !u!114 &1439775118083780458
 MonoBehaviour:

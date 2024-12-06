@@ -11,7 +11,7 @@ using UnityEngine.Pool;
 public class Mob : MonoBehaviour
 {
     //Mob Specs
-    [SerializeField] protected int health = 5;
+    public int health = 5;
     [SerializeField] private float speed = 10f;
     [SerializeField] private GameObject projectilePrefab;
     public bool canAct = false;
@@ -21,8 +21,13 @@ public class Mob : MonoBehaviour
 
     private List<Projectile> spawnedProjectiles;
 
+    protected Collider2D mobCollider;
+    protected SpriteRenderer mobRenderer;
+
     private void Awake()
     {
+        mobCollider = GetComponent<Collider2D>();
+        mobRenderer = GetComponent<SpriteRenderer>();
         projectilePool = new ObjectPool<Projectile>(InstantiateProjectile, GetProjectile, ReleaseProjectile, DestroyProjectile);
         spawnedProjectiles = new List<Projectile>();
     }
@@ -64,12 +69,15 @@ public class Mob : MonoBehaviour
             spawnedProjectiles.Add(projectile);
     }
 
-    public void ApplyDamage()
+    public virtual void ApplyDamage()
     {
         health--;
 
-        if(health <= 0)
+
+        if (health <= 0)
             Die();
+        else
+            StartCoroutine(FlashOpacity(0.05f, 0.8f));
     }
 
     public virtual void Die()
@@ -90,6 +98,26 @@ public class Mob : MonoBehaviour
     {
         if (collision.gameObject.tag == "MobKiller")
             Die();
+    }
+
+    private IEnumerator FlashOpacity(float duration, float targetOpacity)
+    {
+        if (mobRenderer != null)
+        {
+            // Store the original color
+            Color originalColor = mobRenderer.color;
+
+            // Lower the opacity (set alpha to targetOpacity)
+            Color fadedColor = originalColor;
+            fadedColor.a = targetOpacity;
+            mobRenderer.color = fadedColor;
+
+            // Wait for the specified duration
+            yield return new WaitForSeconds(duration);
+
+            // Restore the original color
+            mobRenderer.color = originalColor;
+        }
     }
 
     #region PoolMethods
