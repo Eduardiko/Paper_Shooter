@@ -11,12 +11,10 @@ using UnityEngine.Pool;
 public class Mob : MonoBehaviour
 {
     //Mob Specs
-    [SerializeField] private int health = 5;
-    [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] protected int health = 5;
     [SerializeField] private float speed = 10f;
-    [SerializeField] private float timeToStartMoving = 2f;
-
-    [HideInInspector] public bool canAct = false;
+    [SerializeField] private GameObject projectilePrefab;
+    public bool canAct = false;
 
     [HideInInspector] public ObjectPool<Projectile> projectilePool;
     protected Vector3 spawnPosition;
@@ -55,6 +53,17 @@ public class Mob : MonoBehaviour
             spawnedProjectiles.Add(projectile);
     }
 
+    protected void Shoot(Vector3 bulletRotation)
+    {
+        Projectile projectile = projectilePool.Get();
+        projectile.MyPool = projectilePool;
+        projectile.FatherObject = gameObject;
+        projectile.transform.eulerAngles = bulletRotation;
+
+        if (!spawnedProjectiles.Contains(projectile))
+            spawnedProjectiles.Add(projectile);
+    }
+
     public void ApplyDamage()
     {
         health--;
@@ -63,18 +72,18 @@ public class Mob : MonoBehaviour
             Die();
     }
 
-    public void Die()
+    public virtual void Die()
     {
-        Destroy(gameObject);
-    }
+        if (gameObject == null)
+            return;
 
-    private void OnDestroy()
-    {
         foreach(Projectile projectile in spawnedProjectiles)
         {
             if(projectile != null && !projectile.gameObject.activeSelf)
                 Destroy(projectile.gameObject);
         }
+
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

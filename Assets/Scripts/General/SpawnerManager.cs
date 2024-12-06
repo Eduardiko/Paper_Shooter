@@ -24,6 +24,10 @@ public class SpawnerManager : MonoBehaviour
 
     private float distanceBetweenColumns = 3f;
 
+    private int bossSpawnWave = 4;
+    private int waveCount = 0;
+    private int difficulty = 1;
+
     private void Start()
     {
         spawners = new List<GameObject>();
@@ -43,12 +47,19 @@ public class SpawnerManager : MonoBehaviour
 
     private void Update()
     {
-        if(IsListEntirelyNull(currentSpawnedEntities))
-            SpawnRandomWave();
+        if (IsListEntirelyNull(currentSpawnedEntities))
+        {
+            if (waveCount < bossSpawnWave - 1)
+                SpawnRandomWave();
+            else
+                SpawnBoss();
+        }
     }
 
     void SpawnRandomWave()
     {
+        waveCount++;
+
         int patternIndex = Random.Range(0, patternList.Count);
 
         Vector3 horizontalOffset = Vector3.zero;
@@ -79,9 +90,29 @@ public class SpawnerManager : MonoBehaviour
         }
     }
 
+    void SpawnBoss(float distance = 6f)
+    {
+        waveCount = 0;
+        float waveLengthMultiplier = 1.2f;
+        bossSpawnWave = Mathf.RoundToInt(bossSpawnWave * waveLengthMultiplier);
+
+        GameObject spawnedEnemy = GameObject.Instantiate(crabPrefab, spawners[2].transform.position, Quaternion.identity);
+        
+        currentSpawnedEntities.Add(spawnedEnemy);
+
+        StartCoroutine(StartingWaveBehavior(spawnedEnemy, distance));
+    }
+
     private IEnumerator StartingWaveBehavior(GameObject prefab, float distance)
     {
-        print(distance);
+        if (prefab.gameObject.GetComponent<Crab>() != null)
+        {
+            prefab.gameObject.GetComponent<Crab>().SetPhase(difficulty);
+
+            difficulty++;
+            SetPatterns();
+        }
+
         float duration = 1.5f;
         float stopTime = 1.5f;
         float elapsed = 0f;
@@ -107,7 +138,23 @@ public class SpawnerManager : MonoBehaviour
         yield return new WaitForSeconds(stopTime);
 
         if(prefab.gameObject != null)
+        {
             prefab.gameObject.GetComponent<Mob>().canAct = true;
+
+            if (prefab.gameObject.GetComponent<Crab>() != null)
+            {
+                foreach (Transform child in prefab.transform)
+                {
+                    CrabClaw crabClawChild = child.GetComponent<CrabClaw>();
+                    Pufferfish pufferChild = child.GetComponent<Pufferfish>();
+
+                    if (pufferChild != null && pufferChild.gameObject.activeSelf)
+                        pufferChild.canAct = true;
+                    else if (crabClawChild != null && crabClawChild.gameObject.activeSelf)
+                        crabClawChild.canAct = true;
+                }
+            }
+        }
     }
 
 
@@ -122,15 +169,39 @@ public class SpawnerManager : MonoBehaviour
     void SetPatterns()
     {
         //Hay maneras mejores de hacer esto, un array de arrays por ejemplo
-        patternList.Add(patternEasy1);
-        patternList.Add(patternEasy2);
-        patternList.Add(patternEasy3);
-        patternList.Add(patternMedium1);
-        patternList.Add(patternMedium2);
-        patternList.Add(patternMedium3);
-        patternList.Add(patternHard1);
-        patternList.Add(patternHard2);
-        patternList.Add(patternHard3);
+        switch (difficulty)
+        {
+            case 1:
+                patternList.Add(patternEasy1);
+                patternList.Add(patternEasy2);
+                patternList.Add(patternEasy3);
+                break;
+            case 2:
+                patternList.Clear();
+                patternList.Add(patternMedium1);
+                patternList.Add(patternMedium2);
+                patternList.Add(patternMedium3);
+                break;
+            case 3:
+                patternList.Clear();
+                patternList.Add(patternHard1);
+                patternList.Add(patternHard2);
+                patternList.Add(patternHard3);
+                break;
+            case 4:
+                patternList.Add(patternEasy1);
+                patternList.Add(patternEasy2);
+                patternList.Add(patternEasy3);
+                patternList.Add(patternMedium1);
+                patternList.Add(patternMedium2);
+                patternList.Add(patternMedium3);
+                patternList.Add(patternHard1);
+                patternList.Add(patternHard2);
+                patternList.Add(patternHard3);
+                break;
+            default:
+                break;
+        }
     }
 
     bool IsListEntirelyNull(List<GameObject> list)
