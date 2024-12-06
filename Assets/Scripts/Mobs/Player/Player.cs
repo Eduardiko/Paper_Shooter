@@ -15,6 +15,11 @@ public class Player : Mob
 
     private Vector3 initPosition;
 
+    [SerializeField] private GameObject propulsorTop;
+    [SerializeField] private GameObject propulsorBot;
+    [SerializeField] private GameObject propulsorBack;
+
+
     void Start()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -40,7 +45,22 @@ public class Player : Mob
 
     public void ReadContinuousInputs()
     {
-        Move(moveAction.ReadValue<Vector2>());
+        propulsorBack.SetActive(false);
+        propulsorTop.SetActive(false);
+        propulsorBot.SetActive(false);
+
+        Vector2 direction = moveAction.ReadValue<Vector2>();
+        
+        if (direction.x > 0)
+            propulsorBack.SetActive(true);
+
+        if(direction.y > 0)
+            propulsorBot.SetActive(true);
+
+        if (direction.y < 0)
+            propulsorTop.SetActive(true);
+
+        Move(direction);
 
         if (shootAction.ReadValue<float>() == 1 && timeToShoot <= 0)
         {
