@@ -134,6 +134,8 @@ public class Mob : MonoBehaviour
     {
         projectile.gameObject.SetActive(true);
         projectile.transform.position = spawnPosition;
+        if(projectile.InitSprite != null)
+            projectile.ProjectileRenderer.sprite = projectile.InitSprite;
     }
 
     private void ReleaseProjectile(Projectile projectile)

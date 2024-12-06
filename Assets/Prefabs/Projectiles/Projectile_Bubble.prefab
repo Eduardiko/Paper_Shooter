@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1564512240997927400
+--- !u!1 &3443693805815439171
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3838107535964898494}
-  - component: {fileID: 2701365908663419253}
-  - component: {fileID: 7693110480643311402}
-  - component: {fileID: 2615110576370016419}
-  - component: {fileID: 5264081433960015152}
+  - component: {fileID: 1172943694028004695}
+  - component: {fileID: 4327651713030112520}
+  - component: {fileID: 8303428222785495212}
+  - component: {fileID: 4084177968292412094}
+  - component: {fileID: -6943091133395202190}
   m_Layer: 0
-  m_Name: Projectile_Laser
+  m_Name: Projectile_Bubble
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3838107535964898494
+--- !u!4 &1172943694028004695
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1564512240997927400}
+  m_GameObject: {fileID: 3443693805815439171}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.38, y: -0.059661984, z: 0.67732465}
+  m_LocalPosition: {x: 0.96395886, y: 1.0894299, z: 0.67732465}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &2701365908663419253
+--- !u!212 &4327651713030112520
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1564512240997927400}
+  m_GameObject: {fileID: 3443693805815439171}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -76,10 +76,10 @@ SpriteRenderer:
   m_SortingLayerID: 775111543
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fd02cfe9120c43a4fac885b0836a0dc0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0879efd12667d3147acb7e6ed2d3f399, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
-  m_FlipY: 1
+  m_FlipX: 0
+  m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.38, y: 0.38}
   m_AdaptiveModeThreshold: 0.5
@@ -87,26 +87,30 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7693110480643311402
+--- !u!114 &8303428222785495212
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1564512240997927400}
+  m_GameObject: {fileID: 3443693805815439171}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c216c445325f3ff49bc2ce047ee2a645, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7
---- !u!61 &2615110576370016419
+  speed: 10
+  explosionSprites:
+  - {fileID: 21300000, guid: 6cef4ce147376ce4f939727d42063a2c, type: 3}
+  - {fileID: 21300000, guid: c0eac1561ce92d04e8e1c3b4b1a126b7, type: 3}
+  - {fileID: 21300000, guid: 70e6f45d9802bd148936cec23f081269, type: 3}
+--- !u!61 &4084177968292412094
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1564512240997927400}
+  m_GameObject: {fileID: 3443693805815439171}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -136,23 +140,23 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 14.63, y: 1.26}
+    oldSize: {x: 0.38, y: 0.38}
     newSize: {x: 0.38, y: 0.38}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 14.64, y: 0.81}
+  m_Size: {x: 0.38, y: 0.38}
   m_EdgeRadius: 0
---- !u!50 &5264081433960015152
+--- !u!50 &-6943091133395202190
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1564512240997927400}
+  m_GameObject: {fileID: 3443693805815439171}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0

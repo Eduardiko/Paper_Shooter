@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4084177968292412094}
   - component: {fileID: -6943091133395202190}
   m_Layer: 0
-  m_Name: Projectile_Crab_Bubble
+  m_Name: Projectile_Spike
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,9 +75,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 775111543
   m_SortingLayer: 1
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0879efd12667d3147acb7e6ed2d3f399, type: 3}
-  m_Color: {r: 1, g: 1, b: 0, a: 1}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: fcb091462a2cbb548bde77f74e12088e, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -99,7 +99,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c216c445325f3ff49bc2ce047ee2a645, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 10
+  explosionSprites:
+  - {fileID: 21300000, guid: 6cef4ce147376ce4f939727d42063a2c, type: 3}
+  - {fileID: 21300000, guid: c0eac1561ce92d04e8e1c3b4b1a126b7, type: 3}
+  - {fileID: 21300000, guid: 70e6f45d9802bd148936cec23f081269, type: 3}
 --- !u!61 &4084177968292412094
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -136,7 +140,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.38, y: 0.38}
+    oldSize: {x: 0.43, y: 0.43}
     newSize: {x: 0.38, y: 0.38}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
