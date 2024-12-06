@@ -50,12 +50,13 @@ public class Projectile : MonoBehaviour
     private IEnumerator AssignRandomSpriteAndDestroy()
     {
         canMove = false;
-        projectileCollider.enabled = false;
 
         Sprite randomSprite = explosionSprites[Random.Range(0, explosionSprites.Length)];
         projectileRenderer.sprite = randomSprite;
-
-        yield return new WaitForSeconds(0.15f);
+        
+        yield return new WaitForSeconds(0.1f);
+        projectileCollider.enabled = false;
+        yield return new WaitForSeconds(0.14f);
 
         projectileCollider.enabled = true;
 
@@ -69,13 +70,13 @@ public class Projectile : MonoBehaviour
 
         if (collision.gameObject.tag != "Projectile" && fatherObject.tag != collision.gameObject.tag)
         {
-            if (this.gameObject.activeSelf)
-                StartCoroutine(AssignRandomSpriteAndDestroy());
-
             Mob mob = collision.gameObject.GetComponent<Mob>();
 
             if(mob != null)
                 mob.ApplyDamage();
+
+            if (this.gameObject.activeSelf)
+                StartCoroutine(AssignRandomSpriteAndDestroy());
         }
     }
 }

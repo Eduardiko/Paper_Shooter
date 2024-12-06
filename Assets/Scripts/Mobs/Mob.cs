@@ -18,6 +18,7 @@ public class Mob : MonoBehaviour
 
     [HideInInspector] public ObjectPool<Projectile> projectilePool;
     [SerializeField] private int pointsWhenDead;
+    [SerializeField] private Sprite deadSprite;
     protected Vector3 spawnPosition;
 
     private List<Projectile> spawnedProjectiles;
