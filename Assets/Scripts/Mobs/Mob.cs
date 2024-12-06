@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -25,13 +24,18 @@ public class Mob : MonoBehaviour
 
     protected Collider2D mobCollider;
     protected SpriteRenderer mobRenderer;
+    protected Rigidbody2D mobRigidBody;
 
     private bool blinkCoroutineRunning = false;
+    private bool readyToGetDestroyed = false;
+
+    public bool ReadyToGetDestroyed { get => readyToGetDestroyed; set => readyToGetDestroyed = value; }
 
     private void Awake()
     {
         mobCollider = GetComponent<Collider2D>();
         mobRenderer = GetComponent<SpriteRenderer>();
+        mobRigidBody = GetComponent<Rigidbody2D>();
         projectilePool = new ObjectPool<Projectile>(InstantiateProjectile, GetProjectile, ReleaseProjectile, DestroyProjectile);
         spawnedProjectiles = new List<Projectile>();
     }
@@ -39,11 +43,14 @@ public class Mob : MonoBehaviour
     void Update()
     {
         spawnPosition = transform.position;
+
+        if (readyToGetDestroyed && !mobRenderer.isVisible)
+            Destroy(gameObject);
     }
 
     protected void Move(Vector2 direction)
     {
-        float verticalSpeedMultiplier = 1.5f;
+        float verticalSpeedMultiplier = 1.75f;
 
         if(direction.y != 0)
             transform.Translate(direction * speed * verticalSpeedMultiplier * Time.deltaTime);
@@ -97,7 +104,30 @@ public class Mob : MonoBehaviour
                 Destroy(projectile.gameObject);
         }
 
-        Destroy(gameObject);
+        ThrowDeadAway();
+    }
+
+    public void ThrowDeadAway()
+    {
+        if(mobRigidBody != null)
+        {
+            float rotSpeed = 0;
+            float gravityMagnitude = 5f;
+
+            Vector2 direction = new Vector2((float)Random.Range(transform.position.x - 180, transform.position.x + 180), (float)Random.Range(transform.position.y, transform.position.y + 180));
+            float force = (float)Random.Range(1, 7.5f);
+            mobRigidBody.AddForce(direction * force);
+            mobRigidBody.gravityScale = gravityMagnitude;
+
+            rotSpeed = (float)Random.Range(-25, 25);
+
+            mobRigidBody.AddTorque(force * rotSpeed);
+
+            if(mobRenderer != null && deadSprite != null)
+                mobRenderer.sprite = deadSprite;
+        }
+        readyToGetDestroyed = true;
+        canAct = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

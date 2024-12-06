@@ -25,6 +25,9 @@ public class CrabClaw : Mob
 
     private void Update()
     {
+        if (ReadyToGetDestroyed && !mobRenderer.isVisible)
+            Destroy(gameObject);
+
         if (!canAct)
             return;
 

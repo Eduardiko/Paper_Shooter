@@ -9,11 +9,14 @@ public class Swordfish : Mob
 
     void Update()
     {
-        if(canAct)
-        {
-            Move(Vector3.right);
-            if (propulsorBack != null)
-                propulsorBack.SetActive(true);
-        }
+        if (ReadyToGetDestroyed && mobRenderer != null && !mobRenderer.isVisible)
+                Destroy(gameObject);
+
+        if (!canAct)
+            return;
+
+        Move(Vector3.right);
+        if (propulsorBack != null)
+            propulsorBack.SetActive(true);
     }
 }

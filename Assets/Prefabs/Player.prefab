@@ -360,6 +360,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 3443693805815439171, guid: 3f2c238c466a14044be8ccfdef3d6e4b, type: 3}
   canAct: 0
   pointsWhenDead: 0
+  deadSprite: {fileID: 21300000, guid: 442311f66d28822438a51fc3f201f798, type: 3}
   timeBetweenBullets: 0.3
   propulsorTop: {fileID: 1735435407265914599}
   propulsorBot: {fileID: 1765130653997739504}

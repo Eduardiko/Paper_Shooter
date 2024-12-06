@@ -10,6 +10,9 @@ public class Pufferfish : Mob
 
     void Update()
     {
+        if (ReadyToGetDestroyed && mobRenderer != null && !mobRenderer.isVisible)
+            Destroy(gameObject);
+
         if (!canAct)
             return;
 

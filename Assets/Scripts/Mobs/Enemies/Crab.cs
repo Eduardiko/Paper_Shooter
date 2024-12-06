@@ -46,7 +46,7 @@ public class Crab : Mob
             if(childMob != null && childMob.gameObject.activeSelf)
                 childMob.Die();
         }
-        
-        Destroy(gameObject);
+
+        ThrowDeadAway();
     }
 }
