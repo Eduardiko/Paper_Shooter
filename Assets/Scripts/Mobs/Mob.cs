@@ -17,12 +17,15 @@ public class Mob : MonoBehaviour
     public bool canAct = false;
 
     [HideInInspector] public ObjectPool<Projectile> projectilePool;
+    [SerializeField] private int pointsWhenDead;
     protected Vector3 spawnPosition;
 
     private List<Projectile> spawnedProjectiles;
 
     protected Collider2D mobCollider;
     protected SpriteRenderer mobRenderer;
+
+    private bool blinkCoroutineRunning = false;
 
     private void Awake()
     {
@@ -73,11 +76,13 @@ public class Mob : MonoBehaviour
     {
         health--;
 
-
         if (health <= 0)
+        {
+            GameManager.playerScore += pointsWhenDead;
             Die();
-        else
-            StartCoroutine(FlashOpacity(0.05f, 0.8f));
+        }
+        else if (!blinkCoroutineRunning)
+            StartCoroutine(FlashOpacity(0.1f, 0.8f));
     }
 
     public virtual void Die()
@@ -104,18 +109,17 @@ public class Mob : MonoBehaviour
     {
         if (mobRenderer != null)
         {
-            // Store the original color
-            Color originalColor = mobRenderer.color;
+            blinkCoroutineRunning = true;
 
-            // Lower the opacity (set alpha to targetOpacity)
+            Color originalColor = mobRenderer.color;
             Color fadedColor = originalColor;
+
             fadedColor.a = targetOpacity;
             mobRenderer.color = fadedColor;
 
-            // Wait for the specified duration
             yield return new WaitForSeconds(duration);
 
-            // Restore the original color
+            blinkCoroutineRunning = false;
             mobRenderer.color = originalColor;
         }
     }

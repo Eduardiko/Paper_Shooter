@@ -107,6 +107,7 @@ MonoBehaviour:
   speed: 0
   projectilePrefab: {fileID: 0}
   canAct: 0
+  pointsWhenDead: 100
 --- !u!61 &1789922907153274658
 BoxCollider2D:
   m_ObjectHideFlags: 0

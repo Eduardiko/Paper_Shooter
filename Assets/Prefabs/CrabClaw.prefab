@@ -103,6 +103,7 @@ MonoBehaviour:
   speed: 10
   projectilePrefab: {fileID: 3443693805815439171, guid: b69afff74b6f34c48bd161c7e84cc612, type: 3}
   canAct: 0
+  pointsWhenDead: 50
   timeBetweenBullets: 0.7
   maxZRotation: 65
   minRotationSpeed: 15

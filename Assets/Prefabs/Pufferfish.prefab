@@ -100,9 +100,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 5
-  projectilePrefab: {fileID: 3443693805815439171, guid: 7570589ef827ee64c901997b58926994, type: 3}
   speed: 10
-  timeToStartMoving: 2
+  projectilePrefab: {fileID: 3443693805815439171, guid: 7570589ef827ee64c901997b58926994, type: 3}
+  canAct: 0
+  pointsWhenDead: 15
   timeBetweenBullets: 1
 --- !u!61 &8804146234127634647
 BoxCollider2D:

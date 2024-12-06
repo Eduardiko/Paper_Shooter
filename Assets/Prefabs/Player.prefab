@@ -104,6 +104,7 @@ MonoBehaviour:
   speed: 5
   projectilePrefab: {fileID: 3443693805815439171, guid: 3f2c238c466a14044be8ccfdef3d6e4b, type: 3}
   canAct: 0
+  pointsWhenDead: 0
   timeBetweenBullets: 0.3
 --- !u!114 &1439775118083780458
 MonoBehaviour:
@@ -214,7 +215,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.44, y: 0.66}
+  m_Size: {x: 1.29, y: 0.54}
   m_EdgeRadius: 0
 --- !u!50 &-1679602064583411603
 Rigidbody2D:

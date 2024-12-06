@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,9 +11,14 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject endLevelMenu;
     [SerializeField] private Transform healthUIGroup;
+    [SerializeField] private TextMeshProUGUI scoreText;
+
+    [HideInInspector] public static int playerScore = 0;
 
     private void Update()
     {
+        scoreText.text = "Score: " + playerScore;
+
         if (playerPrefab == null)
             endLevelMenu.SetActive(true);
 
