@@ -20,7 +20,7 @@ public class Projectile : MonoBehaviour
     public GameObject FatherObject { get => fatherObject; set => fatherObject = value; }
     public Sprite InitSprite { get => initSprite; set => initSprite = value; }
     public SpriteRenderer ProjectileRenderer { get => projectileRenderer; set => projectileRenderer = value; }
-
+    public bool CanMove { get => canMove; set => canMove = value; }
 
     private void Start()
     {
@@ -57,7 +57,6 @@ public class Projectile : MonoBehaviour
 
         yield return new WaitForSeconds(0.15f);
 
-        canMove = true;
         projectileCollider.enabled = true;
 
         myPool.Release(this);
