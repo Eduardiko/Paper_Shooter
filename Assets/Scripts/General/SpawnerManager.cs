@@ -66,7 +66,7 @@ public class SpawnerManager : MonoBehaviour
 
         for (int i = 0; i < patternList[patternIndex].Length; i++)
         {
-            if (patternList[patternIndex][i] == -1)
+            if (patternList[patternIndex][i] < 0)
                 continue;
 
             GameObject prefabToInstantiate = enemyPrefabs[patternList[patternIndex][i]];
@@ -165,53 +165,68 @@ public class SpawnerManager : MonoBehaviour
         }
     }
 
-    void SetPatterns()
-    {
-        //Hay maneras mejores de hacer esto, un array de arrays por ejemplo
-        switch (difficulty)
-        {
-            case 1:
-                patternList.Add(patternEasy1);
-                patternList.Add(patternEasy2);
-                patternList.Add(patternEasy3);
-                break;
-            case 2:
-                patternList.Clear();
-                patternList.Add(patternMedium1);
-                patternList.Add(patternMedium2);
-                patternList.Add(patternMedium3);
-                break;
-            case 3:
-                patternList.Clear();
-                patternList.Add(patternHard1);
-                patternList.Add(patternHard2);
-                patternList.Add(patternHard3);
-                break;
-            case 4:
-                patternList.Add(patternEasy1);
-                patternList.Add(patternEasy2);
-                patternList.Add(patternEasy3);
-                patternList.Add(patternMedium1);
-                patternList.Add(patternMedium2);
-                patternList.Add(patternMedium3);
-                patternList.Add(patternHard1);
-                patternList.Add(patternHard2);
-                patternList.Add(patternHard3);
-                break;
-            default:
-                break;
-        }
-    }
-
     bool IsListEntirelyNull(List<GameObject> list)
     {
-        foreach(GameObject t in list)
+        foreach (GameObject t in list)
         {
             if (t != null)
                 return false;
         }
         return true;
     }
+
+    void SetPatterns()
+    {
+        int[][][] patterns = new int[][][]
+        {
+        // Easy patterns
+        new int[][] 
+        {
+            patternEasy1,
+            patternEasy2,
+            patternEasy3,
+            patternEasy4,
+            patternEasy5,
+            patternEasy6
+        },
+        // Medium patterns
+        new int[][] 
+        {
+            patternMedium1,
+            patternMedium2,
+            patternMedium3,
+            patternMedium4,
+            patternMedium5,
+            patternMedium6
+        },
+        // Hard patterns
+        new int[][]
+        {
+            patternHard1,
+            patternHard2,
+            patternHard3,
+            patternHard4,
+            patternHard5,
+            patternHard6
+        }
+        };
+
+        patternList.Clear();
+
+        if (difficulty >= 1 && difficulty <= 3)
+        {
+            patternList.AddRange(patterns[difficulty - 1]);
+        }
+        else if (difficulty == 4)
+        {
+            for (int i = 0; i < patterns.Length; i++)
+            {
+                patternList.AddRange(patterns[i]);
+            }
+        }
+    }
+
+
 
     #region Patterns
 
@@ -231,23 +246,56 @@ public class SpawnerManager : MonoBehaviour
         0, -1, 0, -1, 0,
     };
 
+    int[] patternEasy4 =
+    {
+        1, -1, 1, -1, 1,
+    };
+
+    int[] patternEasy5 =
+    {
+        2, -1, 0, -1, 2,
+    };
+
+    int[] patternEasy6 =
+    {
+        0, -1, 1, -1, 0,
+    };
+
     //Medium
     int[] patternMedium1 =
     { 
         0, 0, 0, 0, 0,
-        1, -1, 1, -1, 1
+        1, -1, 1, -1, 1,
     };
 
     int[] patternMedium2 =
     {
         -1, 1, 0, 1, -1,
-        1, -1, -1, -1, 1
+        1, -1, -1, -1, 1,
     };
 
     int[] patternMedium3 =
     {
         2, -1, 1, -1, 2,
-        1, 0, -1, 0, 1
+        1, -1, 0, -1, 1,
+    };
+
+    int[] patternMedium4 =
+    {
+        -1, 0, 1, 0, -1,
+        1, -1, -1, -1, 1,
+    };
+
+    int[] patternMedium5 =
+    {
+        1, 0, -1, 0, 1,
+        2, -1, 1, -1, 2,
+    };
+
+    int[] patternMedium6 =
+    {
+        0, -1, 2, -1, 0,
+        1, -1, -1, -1, 1,
     };
 
     //Hard
@@ -255,21 +303,42 @@ public class SpawnerManager : MonoBehaviour
     {
         1, 0, -1, 0, 1,
         -1, -1, 1, -1, -1,
-        0, 1, 0, 1, 0
+        0, 1, 0, 1, 0,
     };
 
     int[] patternHard2 =
     {
         1, 0, 1, 0, 1,
         0, 1, 0, 1, 0,
-        1, 0, 1, 0, 1
+        1, 0, 1, 0, 1,
     };
 
     int[] patternHard3 =
     {
         0, 0, 0, 0, 0,
         2, -1, 0, -1, 2,
-        1, 1, 1, 1, 1
+        1, 1, 1, 1, 1,
+    };
+
+    int[] patternHard4 =
+    {
+        2, -1, 1, -1, 2,
+        2, -1, 0, -1, 2,
+        2, -1, 1, -1, 2,
+    };
+
+    int[] patternHard5 =
+    {
+        -1, 2, -1, 2, -1,
+        0, -1, 0, -1, 0,
+        -1, 1, -1, 1, -1,
+    };
+
+    int[] patternHard6 =
+    {
+        0, -1, 2, -1, 0,
+        1, -1, 2, -1, 1,
+        1, -1, 2, -1, 1,
     };
 
     #endregion

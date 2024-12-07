@@ -155,12 +155,15 @@ public class Player : Mob
                 cannons[3].SetActive(true);
                 cannons[4].SetActive(true);
                 break;
-            default:
+            case 4:
                 cannons[0].SetActive(false);
                 cannons[1].SetActive(true);
                 cannons[2].SetActive(true);
                 cannons[3].SetActive(true);
                 cannons[4].SetActive(true);
+                break;
+            default:
+                Heal();
                 break;
         }
 

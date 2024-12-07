@@ -14,7 +14,7 @@ public class Crab : Mob
             case 1:
                 break;
             case 2:
-                health = 50;
+                health = 100;
                 foreach (Transform child in transform)
                 {
                     Pufferfish pufferChild = child.GetComponent<Pufferfish>();
@@ -24,7 +24,7 @@ public class Crab : Mob
                 }
                 break;
             default:
-                health = 100;
+                health = 200;
                 foreach (Transform child in transform)
                 {
                     CrabClaw crabClawChild = child.GetComponent<CrabClaw>();
