@@ -105,6 +105,7 @@ MonoBehaviour:
   canAct: 0
   pointsWhenDead: 15
   deadSprite: {fileID: 21300000, guid: 4a526963a05247a47ae5aeca96c771b1, type: 3}
+  lifeUpPrefab: {fileID: 1673297881556529600, guid: 152e853cee2584445a3fb64f0ea5d771, type: 3}
   timeBetweenBullets: 1
 --- !u!61 &8804146234127634647
 BoxCollider2D:

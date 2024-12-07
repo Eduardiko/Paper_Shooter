@@ -18,6 +18,7 @@ public class Mob : MonoBehaviour
     [HideInInspector] public ObjectPool<Projectile> projectilePool;
     [SerializeField] private int pointsWhenDead;
     [SerializeField] private Sprite deadSprite;
+    [SerializeField] private GameObject lifeUpPrefab;
     protected Vector3 spawnPosition;
 
     private List<Projectile> spawnedProjectiles;
@@ -30,6 +31,8 @@ public class Mob : MonoBehaviour
     private bool readyToGetDestroyed = false;
 
     public bool ReadyToGetDestroyed { get => readyToGetDestroyed; set => readyToGetDestroyed = value; }
+
+    private GameObject spawnedLife;
 
     private void Awake()
     {
@@ -96,7 +99,7 @@ public class Mob : MonoBehaviour
     {
         health--;
 
-        if (health <= 0)
+        if (health == 0)
         {
             GameManager.playerScore += pointsWhenDead;
             Die();
@@ -123,6 +126,12 @@ public class Mob : MonoBehaviour
     {
         if(mobRigidBody != null)
         {
+            int probabilityToSpawnLife = 5;
+            int number = Random.Range(0, 100);
+            print(number);
+            if (number <= probabilityToSpawnLife && spawnedLife == null)
+                spawnedLife = GameObject.Instantiate(lifeUpPrefab, gameObject.transform.position, Quaternion.identity);
+
             float rotSpeed = 0;
             float gravityMagnitude = 5f;
 
@@ -140,6 +149,7 @@ public class Mob : MonoBehaviour
         }
         readyToGetDestroyed = true;
         canAct = false;
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

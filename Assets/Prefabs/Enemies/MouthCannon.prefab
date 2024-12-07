@@ -48,4 +48,7 @@ MonoBehaviour:
   speed: 10
   projectilePrefab: {fileID: 1564512240997927400, guid: b88499a4cbc31fb4fbd9a8128462b87d, type: 3}
   canAct: 1
+  pointsWhenDead: 0
+  deadSprite: {fileID: 0}
+  lifeUpPrefab: {fileID: 1673297881556529600, guid: 152e853cee2584445a3fb64f0ea5d771, type: 3}
   timeBetweenBullets: 10

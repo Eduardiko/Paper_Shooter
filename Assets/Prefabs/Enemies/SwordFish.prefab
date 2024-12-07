@@ -106,6 +106,7 @@ MonoBehaviour:
   canAct: 0
   pointsWhenDead: 25
   deadSprite: {fileID: 21300000, guid: 511e7f6ff322f8e42bfc6955b51db7bb, type: 3}
+  lifeUpPrefab: {fileID: 1673297881556529600, guid: 152e853cee2584445a3fb64f0ea5d771, type: 3}
   propulsorBack: {fileID: 6853662022249553150}
 --- !u!61 &8804146234127634647
 BoxCollider2D:
