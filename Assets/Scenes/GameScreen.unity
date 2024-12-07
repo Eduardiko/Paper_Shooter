@@ -318,7 +318,7 @@ GameObject:
   - component: {fileID: 314255403}
   - component: {fileID: 314255404}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: UIManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -932,7 +932,7 @@ GameObject:
   - component: {fileID: 623113296}
   - component: {fileID: 623113295}
   m_Layer: 0
-  m_Name: Background (1)
+  m_Name: Background_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2426,7 +2426,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -2597,10 +2597,10 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 516211813}
   - {fileID: 2139693084}
+  - {fileID: 314255403}
+  - {fileID: 675665499}
+  - {fileID: 606597935}
+  - {fileID: 1015077785}
   - {fileID: 1199646202}
   - {fileID: 623113297}
-  - {fileID: 314255403}
-  - {fileID: 606597935}
-  - {fileID: 675665499}
-  - {fileID: 1015077785}
   - {fileID: 2131691277}

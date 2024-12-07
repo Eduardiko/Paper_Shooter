@@ -38,7 +38,6 @@ public class Crab : Mob
                 break;
         }
     }
-
     public override void Die()
     {
         foreach (Transform child in transform)

@@ -8,7 +8,6 @@ public class Projectile : MonoBehaviour
     [SerializeField] private int speed;
     [SerializeField] private Sprite[] explosionSprites = new Sprite[3];
 
-
     private Sprite initSprite;
     private GameObject fatherObject;
     private ObjectPool<Projectile> myPool;
@@ -47,22 +46,6 @@ public class Projectile : MonoBehaviour
             myPool.Release(this);
     }
 
-    private IEnumerator AssignRandomSpriteAndDestroy()
-    {
-        canMove = false;
-
-        Sprite randomSprite = explosionSprites[Random.Range(0, explosionSprites.Length)];
-        projectileRenderer.sprite = randomSprite;
-        
-        yield return new WaitForSeconds(0.1f);
-        projectileCollider.enabled = false;
-        yield return new WaitForSeconds(0.14f);
-
-        projectileCollider.enabled = true;
-
-        myPool.Release(this);
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject == null || fatherObject == null || this.gameObject == null)
@@ -78,5 +61,22 @@ public class Projectile : MonoBehaviour
             if (this.gameObject.activeSelf)
                 StartCoroutine(AssignRandomSpriteAndDestroy());
         }
+    }
+
+    private IEnumerator AssignRandomSpriteAndDestroy()
+    {
+        //Give explosion sprite before destroying
+        canMove = false;
+
+        Sprite randomSprite = explosionSprites[Random.Range(0, explosionSprites.Length)];
+        projectileRenderer.sprite = randomSprite;
+        
+        yield return new WaitForSeconds(0.1f);
+        projectileCollider.enabled = false;
+        yield return new WaitForSeconds(0.14f);
+
+        projectileCollider.enabled = true;
+
+        myPool.Release(this);
     }
 }

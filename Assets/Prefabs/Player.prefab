@@ -455,11 +455,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   speed: 5
-  projectilePrefab: {fileID: 3443693805815439171, guid: 3f2c238c466a14044be8ccfdef3d6e4b, type: 3}
-  canAct: 0
   pointsWhenDead: 0
   deadSprite: {fileID: 21300000, guid: 442311f66d28822438a51fc3f201f798, type: 3}
-  timeBetweenBullets: 0.3
+  lifeUpPrefab: {fileID: 0}
+  projectilePrefab: {fileID: 3443693805815439171, guid: 3f2c238c466a14044be8ccfdef3d6e4b, type: 3}
+  canAct: 0
+  timeBetweenBullets: 0.15
   cannons:
   - {fileID: 479452144560388399}
   - {fileID: 2099633996795694823}

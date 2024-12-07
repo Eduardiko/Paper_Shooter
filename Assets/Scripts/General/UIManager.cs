@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Pool;
 using TMPro;
 
-public class GameManager : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
     [SerializeField] private Player playerPrefab;
     [SerializeField] private GameObject healthUIPrefab;

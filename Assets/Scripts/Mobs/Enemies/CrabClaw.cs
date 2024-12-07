@@ -6,13 +6,12 @@ public class CrabClaw : Mob
 {
 
     [SerializeField] private float timeBetweenBullets = 2f;
+    [SerializeField] private float maxZRotation;
+    [SerializeField] private float minRotationSpeed = 1f;
+    [SerializeField] private float maxRotationSpeed = 5f;
+    [SerializeField] private Vector3 pivotOffset;
+
     private float timeToShoot = 0;
-
-    public float maxZRotation;
-    public float minRotationSpeed = 1f; 
-    public float maxRotationSpeed = 5f;
-    public Vector3 pivotOffset;
-
     private float initialRotation; 
     private float targetRotation; 
     private float currentRotationSpeed;
@@ -49,7 +48,6 @@ public class CrabClaw : Mob
 
         RotateAroundPivot(Mathf.Sign(deltaZ) * step);
     }
-
 
     private void ShootBehaviour()
     {

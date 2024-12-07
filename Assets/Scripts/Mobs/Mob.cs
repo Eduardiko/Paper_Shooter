@@ -5,34 +5,31 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Pool;
 
-
-
 public class Mob : MonoBehaviour
 {
     //Mob Specs
     public int health = 5;
     [SerializeField] private float speed = 10f;
-    [SerializeField] private GameObject projectilePrefab;
-    public bool canAct = false;
-
-    [HideInInspector] public ObjectPool<Projectile> projectilePool;
     [SerializeField] private int pointsWhenDead;
     [SerializeField] private Sprite deadSprite;
     [SerializeField] private GameObject lifeUpPrefab;
+    [SerializeField] private GameObject projectilePrefab;
+
+    [HideInInspector]  public bool canAct = false;
+    [HideInInspector] public ObjectPool<Projectile> projectilePool;
+
     protected Vector3 spawnPosition;
-
-    private List<Projectile> spawnedProjectiles;
-
     protected Collider2D mobCollider;
     protected SpriteRenderer mobRenderer;
     protected Rigidbody2D mobRigidBody;
 
+    private List<Projectile> spawnedProjectiles;
+    private GameObject spawnedLife;
     private bool blinkCoroutineRunning = false;
     private bool readyToGetDestroyed = false;
 
     public bool ReadyToGetDestroyed { get => readyToGetDestroyed; set => readyToGetDestroyed = value; }
 
-    private GameObject spawnedLife;
 
     private void Awake()
     {
@@ -101,7 +98,7 @@ public class Mob : MonoBehaviour
 
         if (health == 0)
         {
-            GameManager.playerScore += pointsWhenDead;
+            UIManager.playerScore += pointsWhenDead;
             Die();
         }
         else if (!blinkCoroutineRunning)
@@ -129,12 +126,13 @@ public class Mob : MonoBehaviour
             if(!readyToGetDestroyed)
                 AudioManager.Instance.PlaySFX(1, 0.5f);
 
-            int number = Random.Range(0, 100);
+            //Chance to spawn life
             // El random.range como va rarete ha acabado siendo 1% super inconsistente xD
+            int number = Random.Range(0, 100);
             if (number == 69 && spawnedLife == null)
                 spawnedLife = GameObject.Instantiate(lifeUpPrefab, gameObject.transform.position, Quaternion.identity);
 
-            float rotSpeed = 0;
+            //Apply force + torque to throw the sprite away
             float gravityMagnitude = 5f;
 
             Vector2 direction = new Vector2((float)Random.Range(transform.position.x - 180, transform.position.x + 180), (float)Random.Range(transform.position.y, transform.position.y + 180));
@@ -142,7 +140,7 @@ public class Mob : MonoBehaviour
             mobRigidBody.AddForce(direction * force);
             mobRigidBody.gravityScale = gravityMagnitude;
 
-            rotSpeed = (float)Random.Range(-25, 25);
+            float rotSpeed = (float)Random.Range(-25, 25);
 
             mobRigidBody.AddTorque(force * rotSpeed);
 
@@ -151,7 +149,6 @@ public class Mob : MonoBehaviour
         }
         readyToGetDestroyed = true;
         canAct = false;
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

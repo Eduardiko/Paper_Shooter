@@ -15,9 +15,7 @@ public class SpawnerManager : MonoBehaviour
 
     private List<GameObject> spawners;
     private List<GameObject> enemyPrefabs;
-
     private List<GameObject> currentSpawnedEntities;
-
     private List<int[]> patternList;
 
     private float distanceBetweenColumns = 3f;
@@ -102,6 +100,65 @@ public class SpawnerManager : MonoBehaviour
         StartCoroutine(StartingWaveBehavior(spawnedEnemy, distance));
     }
 
+    void SetSpawners()
+    {
+        foreach (Transform child in transform)
+        {
+            spawners.Add(child.gameObject);
+        }
+    }
+
+    void SetPatterns()
+    {
+        int[][][] patterns = new int[][][]
+        {
+        // Easy patterns
+        new int[][] 
+        {
+            patternEasy1,
+            patternEasy2,
+            patternEasy3,
+            patternEasy4,
+            patternEasy5,
+            patternEasy6
+        },
+        // Medium patterns
+        new int[][] 
+        {
+            patternMedium1,
+            patternMedium2,
+            patternMedium3,
+            patternMedium4,
+            patternMedium5,
+            patternMedium6
+        },
+        // Hard patterns
+        new int[][]
+        {
+            patternHard1,
+            patternHard2,
+            patternHard3,
+            patternHard4,
+            patternHard5,
+            patternHard6
+        }
+        };
+
+        patternList.Clear();
+
+        if (difficulty >= 1 && difficulty <= 3)
+        {
+            patternList.AddRange(patterns[difficulty - 1]);
+        }
+        else if (difficulty == 4)
+        {
+            for (int i = 0; i < patterns.Length; i++)
+            {
+                patternList.AddRange(patterns[i]);
+            }
+        }
+    }
+
     private IEnumerator StartingWaveBehavior(GameObject prefab, float distance)
     {
         if (prefab.gameObject.GetComponent<Crab>() != null)
@@ -156,15 +213,6 @@ public class SpawnerManager : MonoBehaviour
         }
     }
 
-
-    void SetSpawners()
-    {
-        foreach (Transform child in transform)
-        {
-            spawners.Add(child.gameObject);
-        }
-    }
-
     bool IsListEntirelyNull(List<GameObject> list)
     {
         foreach (GameObject t in list)
@@ -174,59 +222,7 @@ public class SpawnerManager : MonoBehaviour
         }
         return true;
     }
-
-    void SetPatterns()
-    {
-        int[][][] patterns = new int[][][]
-        {
-        // Easy patterns
-        new int[][] 
-        {
-            patternEasy1,
-            patternEasy2,
-            patternEasy3,
-            patternEasy4,
-            patternEasy5,
-            patternEasy6
-        },
-        // Medium patterns
-        new int[][] 
-        {
-            patternMedium1,
-            patternMedium2,
-            patternMedium3,
-            patternMedium4,
-            patternMedium5,
-            patternMedium6
-        },
-        // Hard patterns
-        new int[][]
-        {
-            patternHard1,
-            patternHard2,
-            patternHard3,
-            patternHard4,
-            patternHard5,
-            patternHard6
-        }
-        };
-
-        patternList.Clear();
-
-        if (difficulty >= 1 && difficulty <= 3)
-        {
-            patternList.AddRange(patterns[difficulty - 1]);
-        }
-        else if (difficulty == 4)
-        {
-            for (int i = 0; i < patterns.Length; i++)
-            {
-                patternList.AddRange(patterns[i]);
-            }
-        }
-    }
-
-
+    
 
     #region Patterns
 

@@ -6,7 +6,12 @@ using UnityEngine.InputSystem;
 public class Player : Mob
 {
     [SerializeField] private float timeBetweenBullets = 2f;
-    private float timeToShoot = 0;
+    [SerializeField] private GameObject[] cannons = new GameObject[5];
+    
+    //Podría haber repetido el hacer un array... :D
+    [SerializeField] private GameObject propulsorTop;
+    [SerializeField] private GameObject propulsorBot;
+    [SerializeField] private GameObject propulsorBack;
 
     // Continous Input Actions
     private PlayerInput playerInput;
@@ -14,15 +19,8 @@ public class Player : Mob
     private InputAction shootAction;
 
     private Vector3 initPosition;
-
-    [SerializeField] private GameObject[] cannons = new GameObject[5];
-
-
-    [SerializeField] private GameObject propulsorTop;
-    [SerializeField] private GameObject propulsorBot;
-    [SerializeField] private GameObject propulsorBack;
-
-    private int phase = 0;
+    private float timeToShoot = 0;
+    private int phase = 1;
 
     void Start()
     {
@@ -32,8 +30,6 @@ public class Player : Mob
         shootAction = playerInput.actions.FindAction("Shoot");
 
         initPosition = transform.position;
-
-        UpgradeShip();
     }
 
     void Update()
@@ -47,9 +43,6 @@ public class Player : Mob
         ReadContinuousInputs();
 
         spawnPosition = transform.position;
-
-        if (timeToShoot > 0)
-            timeToShoot -= Time.deltaTime;
     }
 
     public void ReadContinuousInputs()
@@ -105,36 +98,6 @@ public class Player : Mob
         AudioManager.Instance.PlaySFX(3, 0.3f);
     }
 
-    public IEnumerator DisableColliderAndBlink(float duration, float blinkInterval)
-    {
-        if (mobCollider != null && mobRenderer != null)
-        {
-            transform.position = initPosition;
-
-            mobCollider.enabled = false;
-
-            float elapsedTime = 0f;
-
-            while (elapsedTime < duration)
-            {
-                mobRenderer.enabled = !mobRenderer.enabled;
-
-                yield return new WaitForSeconds(blinkInterval);
-
-                elapsedTime += blinkInterval;
-            }
-
-            mobRenderer.enabled = true;
-            mobCollider.enabled = true;
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Enemy" && !collision.gameObject.GetComponent<Mob>().ReadyToGetDestroyed || collision.gameObject.tag == "MobKiller")
-            ApplyDamage();
-    }
-
     public void UpgradeShip()
     {
         phase++;
@@ -169,4 +132,35 @@ public class Player : Mob
 
         AudioManager.Instance.PlaySFX(2, 0.5f);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy" && !collision.gameObject.GetComponent<Mob>().ReadyToGetDestroyed || collision.gameObject.tag == "MobKiller")
+            ApplyDamage();
+    }
+
+    public IEnumerator DisableColliderAndBlink(float duration, float blinkInterval)
+    {
+        if (mobCollider != null && mobRenderer != null)
+        {
+            transform.position = initPosition;
+
+            mobCollider.enabled = false;
+
+            float elapsedTime = 0f;
+
+            while (elapsedTime < duration)
+            {
+                mobRenderer.enabled = !mobRenderer.enabled;
+
+                yield return new WaitForSeconds(blinkInterval);
+
+                elapsedTime += blinkInterval;
+            }
+
+            mobRenderer.enabled = true;
+            mobCollider.enabled = true;
+        }
+    }
+
 }

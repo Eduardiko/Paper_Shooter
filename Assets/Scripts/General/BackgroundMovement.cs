@@ -24,7 +24,6 @@ public class BackgroundMovement : MonoBehaviour
         //hardcoded af :(, he tenido problemas con el renderer
         if (transform.position.x < -19f)
             transform.position = otherBackgroundTransform.position + offset;
-
     }
 
 }
