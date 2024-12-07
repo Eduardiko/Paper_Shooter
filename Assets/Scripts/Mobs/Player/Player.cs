@@ -59,7 +59,7 @@ public class Player : Mob
         propulsorBot.SetActive(false);
 
         Vector2 direction = moveAction.ReadValue<Vector2>();
-        
+
         if (direction.x > 0)
             propulsorBack.SetActive(true);
 
@@ -74,11 +74,14 @@ public class Player : Mob
         if (shootAction.ReadValue<float>() == 1 && timeToShoot <= 0)
         {
             timeToShoot = timeBetweenBullets;
+            AudioManager.Instance.PlaySFX(0, 0.8f);
 
             foreach (GameObject cannon in cannons)
             {
-                if(cannon.activeSelf)
+                if (cannon.activeSelf)
+                {
                     Shoot(cannon.transform);
+                }
             }
         }
     }
@@ -87,9 +90,19 @@ public class Player : Mob
     {
         health--;
         if (health <= 0)
+        {
+            AudioManager.Instance.PlaySFX(5);
             Die();
+        } else if (!ReadyToGetDestroyed)
+             AudioManager.Instance.PlaySFX(7, 0.2f);
 
         StartCoroutine(DisableColliderAndBlink(2f, 0.1f));
+    }
+
+    public void Heal()
+    {
+        health++;
+        AudioManager.Instance.PlaySFX(3);
     }
 
     public IEnumerator DisableColliderAndBlink(float duration, float blinkInterval)
@@ -150,6 +163,7 @@ public class Player : Mob
                 cannons[4].SetActive(true);
                 break;
         }
-    }
 
+        AudioManager.Instance.PlaySFX(2, 0.5f);
+    }
 }

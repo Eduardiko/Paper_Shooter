@@ -56,6 +56,8 @@ public class SpawnerManager : MonoBehaviour
 
     void SpawnRandomWave()
     {
+        AudioManager.Instance.PlaySFX(4);
+
         waveCount++;
 
         int patternIndex = Random.Range(0, patternList.Count);
@@ -79,9 +81,6 @@ public class SpawnerManager : MonoBehaviour
 
             currentSpawnedEntities.Add(spawnedEnemy);
 
-            float startingTranslationDistance = 10f;
-            int maxSpawnedEnemiesNumber = 15;
-
             // The less rows, the less they will move, so that they don't stop in the middle of the screen
             //StartCoroutine(StartingWaveBehavior(spawnedEnemy, startingTranslationDistance * patternList[patternIndex].Length / maxSpawnedEnemiesNumber));
             StartCoroutine(StartingWaveBehavior(spawnedEnemy, 7 + 0.4f * (patternList[patternIndex].Length - 5)));
@@ -90,6 +89,8 @@ public class SpawnerManager : MonoBehaviour
 
     void SpawnBoss(float distance = 6f)
     {
+        AudioManager.Instance.PlaySFX(6, 0.2f);
+
         waveCount = 0;
         float waveLengthMultiplier = 1.2f;
         bossSpawnWave = Mathf.RoundToInt(bossSpawnWave * waveLengthMultiplier);

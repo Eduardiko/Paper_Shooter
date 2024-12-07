@@ -126,9 +126,11 @@ public class Mob : MonoBehaviour
     {
         if(mobRigidBody != null)
         {
+            if(!readyToGetDestroyed)
+                AudioManager.Instance.PlaySFX(1, 0.5f);
+
             int probabilityToSpawnLife = 2;
             int number = Random.Range(0, 100);
-            print(number);
             if (number <= probabilityToSpawnLife && spawnedLife == null)
                 spawnedLife = GameObject.Instantiate(lifeUpPrefab, gameObject.transform.position, Quaternion.identity);
 
