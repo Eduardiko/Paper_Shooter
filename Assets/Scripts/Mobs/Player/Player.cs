@@ -102,7 +102,7 @@ public class Player : Mob
     public void Heal()
     {
         health++;
-        AudioManager.Instance.PlaySFX(3);
+        AudioManager.Instance.PlaySFX(3, 0.3f);
     }
 
     public IEnumerator DisableColliderAndBlink(float duration, float blinkInterval)
