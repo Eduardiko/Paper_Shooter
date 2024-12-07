@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Crab : Mob
 {
+    [SerializeField] private GameObject upgradePrefab;
+    private GameObject spawnedUpgrade;
 
     public void SetPhase(int phase)
     {
@@ -46,6 +48,9 @@ public class Crab : Mob
             if(childMob != null && childMob.gameObject.activeSelf)
                 childMob.Die();
         }
+
+        if(spawnedUpgrade == null)
+            spawnedUpgrade = GameObject.Instantiate(upgradePrefab, transform.position, Quaternion.identity);
 
         ThrowDeadAway();
     }

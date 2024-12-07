@@ -15,10 +15,14 @@ public class Player : Mob
 
     private Vector3 initPosition;
 
+    [SerializeField] private GameObject[] cannons = new GameObject[5];
+
+
     [SerializeField] private GameObject propulsorTop;
     [SerializeField] private GameObject propulsorBot;
     [SerializeField] private GameObject propulsorBack;
 
+    private int phase = 1;
 
     void Start()
     {
@@ -28,6 +32,8 @@ public class Player : Mob
         shootAction = playerInput.actions.FindAction("Shoot");
 
         initPosition = transform.position;
+
+        UpgradeShip();
     }
 
     void Update()
@@ -68,7 +74,12 @@ public class Player : Mob
         if (shootAction.ReadValue<float>() == 1 && timeToShoot <= 0)
         {
             timeToShoot = timeBetweenBullets;
-            Shoot();
+
+            foreach (GameObject cannon in cannons)
+            {
+                if(cannon.activeSelf)
+                    Shoot(cannon.transform);
+            }
         }
     }
 
@@ -111,5 +122,34 @@ public class Player : Mob
             ApplyDamage();
     }
 
+    public void UpgradeShip()
+    {
+        phase++;
+
+        switch (phase)
+        {
+            case 1:
+                break;
+            case 2:
+                cannons[0].SetActive(false);
+                cannons[1].SetActive(true);
+                cannons[2].SetActive(true);
+                break;
+            case 3:
+                cannons[0].SetActive(true);
+                cannons[1].SetActive(false);
+                cannons[2].SetActive(false);
+                cannons[3].SetActive(true);
+                cannons[4].SetActive(true);
+                break;
+            default:
+                cannons[0].SetActive(false);
+                cannons[1].SetActive(true);
+                cannons[2].SetActive(true);
+                cannons[3].SetActive(true);
+                cannons[4].SetActive(true);
+                break;
+        }
+    }
 
 }

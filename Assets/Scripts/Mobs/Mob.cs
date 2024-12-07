@@ -80,6 +80,18 @@ public class Mob : MonoBehaviour
             spawnedProjectiles.Add(projectile);
     }
 
+    protected void Shoot(Transform cannonTransform)
+    {
+        Projectile projectile = projectilePool.Get();
+        projectile.MyPool = projectilePool;
+        projectile.FatherObject = gameObject;
+        projectile.transform.eulerAngles = cannonTransform.eulerAngles;
+        projectile.transform.position = cannonTransform.position;
+
+        if (!spawnedProjectiles.Contains(projectile))
+            spawnedProjectiles.Add(projectile);
+    }
+
     public virtual void ApplyDamage()
     {
         health--;

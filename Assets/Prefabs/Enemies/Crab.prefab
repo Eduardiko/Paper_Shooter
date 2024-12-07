@@ -110,6 +110,7 @@ MonoBehaviour:
   canAct: 0
   pointsWhenDead: 100
   deadSprite: {fileID: 0}
+  upgradePrefab: {fileID: 1673297881556529600, guid: 8d55966d8ac551745b140ffbcb561ea2, type: 3}
 --- !u!61 &1789922907153274658
 BoxCollider2D:
   m_ObjectHideFlags: 0
