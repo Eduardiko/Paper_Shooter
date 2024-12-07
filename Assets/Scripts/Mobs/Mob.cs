@@ -126,7 +126,7 @@ public class Mob : MonoBehaviour
     {
         if(mobRigidBody != null)
         {
-            int probabilityToSpawnLife = 5;
+            int probabilityToSpawnLife = 2;
             int number = Random.Range(0, 100);
             print(number);
             if (number <= probabilityToSpawnLife && spawnedLife == null)

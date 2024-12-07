@@ -22,7 +22,7 @@ public class Player : Mob
     [SerializeField] private GameObject propulsorBot;
     [SerializeField] private GameObject propulsorBack;
 
-    private int phase = 1;
+    private int phase = 0;
 
     void Start()
     {
