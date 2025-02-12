@@ -30,7 +30,7 @@ public class AudioManager : MonoBehaviour
             audioSource.PlayOneShot(clipCollection[clipIndex], volume);
     }
 
-    public void PlayMusic(int clipIndex = 0, float volume = 0.75f)
+    public void PlayMusic(int clipIndex = 0, float volume = 0.75f, bool loops = true)
     {
         if (currentMusicClip == musicClips[clipIndex])
             return;
@@ -39,6 +39,7 @@ public class AudioManager : MonoBehaviour
         musicSource.clip = musicClips[clipIndex];
         currentMusicClip = musicClips[clipIndex];
         musicSource.volume = volume;
+        musicSource.loop = loops;
         musicSource.Play();
     }
 }

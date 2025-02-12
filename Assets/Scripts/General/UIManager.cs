@@ -26,7 +26,10 @@ public class UIManager : MonoBehaviour
         UpdateGrade();
 
         if (playerPrefab == null)
+        {
             endLevelMenu.SetActive(true);
+            AudioManager.Instance.PlayMusic(2, 1, false);
+        }
 
         foreach(RectTransform child in healthUIGroup)
         {

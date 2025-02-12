@@ -83,10 +83,8 @@ public class Player : Mob
     {
         health--;
         if (health <= 0)
-        {
-            AudioManager.Instance.PlaySFX(5);
             Die();
-        } else if (!ReadyToGetDestroyed)
+        else if (!ReadyToGetDestroyed)
              AudioManager.Instance.PlaySFX(7, 0.2f);
 
         StartCoroutine(DisableColliderAndBlink(2f, 0.1f));

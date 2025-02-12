@@ -490,6 +490,7 @@ MonoBehaviour:
   musicClips:
   - {fileID: 8300000, guid: 66653f9268edf354dbeb77b1005a8180, type: 3}
   - {fileID: 8300000, guid: 4a1c16569ce9f6b408e590a883ac3ef6, type: 3}
+  - {fileID: 8300000, guid: 775b5357a94da95489d9a981664c260f, type: 3}
   audioSource: {fileID: 516211811}
   musicSource: {fileID: 516211815}
 --- !u!82 &516211811
