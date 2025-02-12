@@ -6,9 +6,12 @@ public class AudioManager : MonoBehaviour
 {
 
     [SerializeField] AudioClip[] clipCollection = new AudioClip[8];
-    [SerializeField] AudioClip musicClip;
+    [SerializeField] AudioClip[] musicClips;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioSource musicSource;
+    private AudioClip currentMusicClip;
+
+
     public static AudioManager Instance { get; private set; } 
 
     private void Awake()
@@ -27,9 +30,15 @@ public class AudioManager : MonoBehaviour
             audioSource.PlayOneShot(clipCollection[clipIndex], volume);
     }
 
-    private void PlayMusic()
+    public void PlayMusic(int clipIndex = 0, float volume = 0.75f)
     {
-        musicSource.clip = musicClip;
+        if (currentMusicClip == musicClips[clipIndex])
+            return;
+
+        musicSource.Stop();
+        musicSource.clip = musicClips[clipIndex];
+        currentMusicClip = musicClips[clipIndex];
+        musicSource.volume = volume;
         musicSource.Play();
     }
 }

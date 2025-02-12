@@ -43,10 +43,13 @@ public class UIManager : MonoBehaviour
     {
         int i = 0;
 
-        if (playerScore < 175)
+        if (playerScore < 50)
             i = 0;
-        else if (playerScore >= 175 && playerScore < 350)
+        else if (playerScore >= 50 && playerScore < 350)
+        {
             i = 1;
+            AudioManager.Instance.PlayMusic(1, 0.25f);
+        }
         else if (playerScore >= 350 && playerScore < 525)
             i = 2;
         else if (playerScore >= 525 && playerScore < 700)
@@ -68,7 +71,10 @@ public class UIManager : MonoBehaviour
         else if (playerScore >= 1925 && playerScore < 2275)
             i = 11;
         else if (playerScore >= 2275)
+        {
             i = 12;
+            AudioManager.Instance.PlayMusic(1);
+        }
         
         gradesObject.sprite = grades[i];
     }
