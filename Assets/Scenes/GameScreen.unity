@@ -428,6 +428,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 1663691435}
   healthUIPrefab: {fileID: 2538478026876690120, guid: 741ac1eaee461f941832f9328bdaa1d8, type: 3}
+  graduatedSkinObject: {fileID: 606597936}
   endLevelMenu: {fileID: 977280335}
   healthUIGroup: {fileID: 1465486208}
   scoreText: {fileID: 634013243}
@@ -487,6 +488,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e93fd7b743d041d4b90e17644fc5b048, type: 3}
   - {fileID: 8300000, guid: 8ae01daa770fbef4c8e94d11638bdb28, type: 3}
   - {fileID: 8300000, guid: a23fc7505457c7343b5922d599b24493, type: 3}
+  - {fileID: 8300000, guid: fa8e35e3aa6794840b4c5c17ea981be8, type: 3}
   musicClips:
   - {fileID: 8300000, guid: 66653f9268edf354dbeb77b1005a8180, type: 3}
   - {fileID: 8300000, guid: 4a1c16569ce9f6b408e590a883ac3ef6, type: 3}
@@ -1110,6 +1112,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ca8550a987682a4388de513b248126e, type: 3}
+--- !u!1 &606597936 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2556537768156057358, guid: 0ca8550a987682a4388de513b248126e, type: 3}
+  m_PrefabInstance: {fileID: 606597935}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &623113294
 GameObject:
   m_ObjectHideFlags: 0

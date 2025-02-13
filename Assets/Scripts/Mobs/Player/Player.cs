@@ -30,6 +30,7 @@ public class Player : Mob
         shootAction = playerInput.actions.FindAction("Shoot");
 
         initPosition = transform.position;
+        UIManager.playerScore = 0;
     }
 
     void Update()

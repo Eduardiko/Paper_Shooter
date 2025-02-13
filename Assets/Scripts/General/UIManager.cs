@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private Player playerPrefab;
     [SerializeField] private GameObject healthUIPrefab;
+    [SerializeField] private GameObject graduatedSkinObject;
 
     [SerializeField] private GameObject endLevelMenu;
     [SerializeField] private Transform healthUIGroup;
@@ -18,6 +19,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Sprite[] grades;
 
     [HideInInspector] public static int playerScore = 0;
+
+    private int lastGradeIndex = 0;
 
     private void Update()
     {
@@ -46,13 +49,9 @@ public class UIManager : MonoBehaviour
     {
         int i = 0;
 
-        if (playerScore < 50)
-            i = 0;
-        else if (playerScore >= 50 && playerScore < 350)
-        {
+
+        if (playerScore >= 50 && playerScore < 350)
             i = 1;
-            AudioManager.Instance.PlayMusic(1, 0.25f);
-        }
         else if (playerScore >= 350 && playerScore < 525)
             i = 2;
         else if (playerScore >= 525 && playerScore < 700)
@@ -77,8 +76,15 @@ public class UIManager : MonoBehaviour
         {
             i = 12;
             AudioManager.Instance.PlayMusic(1);
+            graduatedSkinObject.SetActive(true);
         }
-        
+
+        if (lastGradeIndex != i)
+        {
+            lastGradeIndex = i;
+            AudioManager.Instance.PlaySFX(8);
+        }
+
         gradesObject.sprite = grades[i];
     }
 }
